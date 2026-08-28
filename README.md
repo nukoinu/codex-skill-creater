@@ -29,7 +29,7 @@ existing repository
 → verify Skill discovery and .skill-lab ignore coverage
 ```
 
-`inspect`, `assess`, and `show adoption plan` produce that proposal and make no changes. Explicit `adopt`, `install`, or `apply` requests inspect and propose first, then apply compatible minimum changes without an extra approval gate unless a material conflict needs a decision. Existing `AGENTS.md`, `.gitignore`, and Skills are preserved; equivalent local capabilities are reused rather than duplicated or replaced.
+`inspect`, `assess`, and `show adoption plan` produce that proposal and make no changes. Explicit `adopt`, `install`, or `apply` requests inspect and propose first, then apply compatible minimum changes without an extra approval gate unless a material conflict needs a decision. Existing `AGENTS.md`, `.gitignore`, and Skills are preserved; only full behavioral-contract equivalents are reused rather than duplicated or replaced. That contract includes generated-Skill self-improvement from version one and self-hosting of the adopted development Skills; the adoption protocol holds the detail.
 
 Conceptual local workspace (entirely ignored by Git):
 
