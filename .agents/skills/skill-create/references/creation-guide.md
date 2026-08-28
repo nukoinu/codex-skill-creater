@@ -61,6 +61,29 @@ The generated reference must instruct the Skill to:
 
 The reference must preserve the Skill's established identity and scope. A template-wide or repository-wide invariant conflict is a proposal, not a silent mutation. It must never require hidden/private chain-of-thought, automatic session collection, scoring, benchmarks, a judge, CI evaluation, or autonomous mutation.
 
+## Route to existing Skills only when compatible
+
+Apply this procedure only when the generated Skill would explicitly name, link to, depend on, or instruct use or reading of an existing Skill. Inspect only that candidate target's entry contract and only the minimum needed to decide the exact proposed routing condition:
+
+- its name and description;
+- its applicability or use conditions;
+- its explicit exclusions or do-not-use boundaries;
+- its high-level responsibility; and
+- entry-level routing guidance needed to resolve the question.
+
+Compare that contract with the exact generated condition. A route is valid only when the condition is semantically permitted and does not contradict an exclusion or select an incompatible workflow phase. Related terminology, an adjacent owner, shared Issue/Contract context, historical neighboring work, or useful facts do not establish compatibility. Read a deeper target reference only if its entry contract leaves this concrete decision ambiguous; do not preload unrelated Skills or references.
+
+For an invalid or materially unresolved candidate, use the first applicable outcome:
+
+1. Do not route to it; use the repository's proper authority or source directly.
+2. Route to another existing Skill whose entry contract permits the condition.
+3. Add focused local guidance or a reference to the generated Skill when that is the narrowest valid design.
+4. Report a material ownership or routing conflict for user decision when no valid route can be established.
+
+Do not broaden or rewrite a target Skill as a creation side effect, invent cross-Skill ownership, or force an adjacent Skill outside its contract.
+
 ## Finish
+
+Before completing, qualitatively validate every explicitly routed existing Skill: the target exists; its entry contract permits the condition; no target exclusion or generated instruction is contradicted; it is not an adjacent-only or incompatible-phase route; compatible existing guidance is not needlessly duplicated locally; and no required repository authority was replaced merely for routing convenience. Keep this validation targeted to the selected candidates, not a graph, repository-wide analyzer, registry, or CI check.
 
 Report the native path, expected `$<skill-name>` invocation, created references, knowledge decisions, and any proposal left for the user. Do not claim repository-specific knowledge was stored when runtime discovery is the correct treatment.
