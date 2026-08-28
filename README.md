@@ -1,0 +1,66 @@
+# Codex Skill Creator
+
+A small, repository-portable template for creating and explicitly improving repository-local Codex Skills from real usage evidence. It provides only the Skill lifecycle; it is not a workbench, Agent framework, or evaluation platform.
+
+## Hands-on: create, use, improve, repeat
+
+Use this flow in any target repository. This repository can also use it to improve its own two template Skills.
+
+1. Copy the template Skills into the target repository's native location, `.agents/skills/`, and start Codex from that repository. The two directories are `skill-create` and `skill-improve`.
+2. Invoke `$skill-create` with a focused, useful request. For example: “Create a repository-local Skill that checks release notes against changed public APIs. It should identify missing or unsupported claims, but must not write release notes.”
+3. Inspect the created Skill. Its `SKILL.md` is concise, `references/self-improvement.md` is present from the first version, and `references/repository/` exists only if stable repository-specific knowledge was actually needed.
+4. Use the new Skill on a real release-note task. Normal use never changes the Skill.
+5. Manually place selected, observable session logs under `.skill-lab/sessions/` in the target repository. This template does not create the directories, collect logs, or impose a log format. You may also keep transient local analysis material in `.skill-lab/work/`.
+6. Explicitly invoke `$skill-improve`, name the target Skill, and provide the selected log paths. It analyzes only those paths plus repository evidence needed to interpret them.
+7. Inspect the reported, evidence-backed minimal change. Use the revised Skill on a later real task, then repeat when the user explicitly requests another improvement.
+
+Conceptual local workspace (entirely ignored by Git):
+
+```text
+.skill-lab/
+├── sessions/
+└── work/
+```
+
+## What is included
+
+- `.agents/skills/skill-create/`: creates a focused repository-local native Codex Skill from a capability request.
+- `.agents/skills/skill-improve/`: explicitly improves a selected Skill from user-provided observable session evidence.
+- `AGENTS.md`: concise stable invariants for the template and generated Skills.
+
+Codex discovers repository Skills under `.agents/skills/`. Each Skill has a `SKILL.md` with `name` and `description` front matter; the description supports discovery, while detailed instructions live in conditionally read `references/`. See the [official OpenAI Skill documentation](https://learn.chatgpt.com/docs/build-skills).
+
+## Knowledge placement
+
+| Classification | Where it belongs |
+| --- | --- |
+| Repository-wide stable invariant | An `AGENTS.md` candidate. Report it; do not change it as a side effect of Skill improvement. |
+| Stable portable Skill behavior | Concise `SKILL.md` guidance if execution-critical; otherwise a general `references/` document. |
+| Stable repository-specific Skill knowledge | `references/repository/<focused-topic>.md`, only when genuinely stable and needed. |
+| Volatile/current repository fact | Runtime discovery from its authoritative source; do not copy it into Skill knowledge. |
+
+Stable guidance may be referenced; current facts are discovered.
+
+## Evidence and self-improvement
+
+Session evidence is user-owned. The template never searches `.skill-lab/` or Codex-internal locations, harvests or indexes sessions, uploads logs, or commits raw logs. It can use user requests, visible actions/output, tool results, commands, validation, repository changes, and available PR/review/test evidence. It never requires hidden/private chain-of-thought.
+
+Every Skill created by `$skill-create` includes an explicit self-improvement path. Improvement is available only after an explicit request to improve, refine, evolve, review for improvement, or update the Skill. It may add, remove, merge, simplify, rewrite, or relocate guidance, but it preserves the Skill's identity and scope. A proposed change to a template-wide invariant is reported rather than silently applied.
+
+The template Skills are self-hosting: invoke `$skill-improve` with `skill-create` or `skill-improve` as the target and user-selected sessions to refine either template Skill under the same rules.
+
+## Lightweight checks
+
+After copying or changing the template, verify:
+
+- the Skills are under `.agents/skills/` and each `SKILL.md` has `name` and `description` front matter;
+- `SKILL.md` files route detailed work and explicit self-improvement to `references/`;
+- `git check-ignore -v .skill-lab/sessions/example.log` confirms the local workspace is ignored;
+- no raw `.skill-lab/` files are tracked; and
+- the hands-on flow, `AGENTS.md`, and both Skills use the same knowledge-placement and explicit-improvement rules.
+
+Codex detects Skill changes automatically; restart it if a newly added or changed Skill does not appear.
+
+## Out of scope
+
+This template does not provide Agents, a CLI, a service, registry, marketplace, database, capability/update graph, cross-repository learning or synchronization, telemetry, automatic routing or session collection/discovery/indexing, benchmarks, numerical scoring, LLM judges, CI evaluation, or autonomous self-modification.
